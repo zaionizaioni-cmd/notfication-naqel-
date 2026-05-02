@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>كابتن ناقل — captain-morning-08</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #33cc99;
+      --primary-dark: #2aad83;
+      --primary-glow: rgba(51, 204, 153, 0.25);
+      --text-muted: #5a7565;
+      --bg: #f0faf5;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: var(--bg);
+      min-height: 100vh;
+      padding: 20px 0 60px;
+      position: relative;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(51,204,153,0.12) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .container { max-width: 720px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+    .hero {
+      background: linear-gradient(150deg, #1e3d2a 0%, #0f2218 60%, #071510 100%);
+      border-radius: 24px;
+      padding: 40px 32px 36px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(10,30,20,0.35), 0 0 0 1px rgba(51,204,153,0.15);
+      animation: fadeDown .6s ease both;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      border: 80px solid rgba(51,204,153,0.07);
+      top: -160px; left: -80px;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(51,204,153,0.18) 0%, transparent 70%);
+      bottom: -40px; right: 40px;
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(51,204,153,0.15);
+      border: 1px solid rgba(51,204,153,0.3);
+      color: var(--primary);
+      font-size: 13px; font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 50px;
+      margin-bottom: 18px;
+    }
+    .hero-greeting { font-size: 17px; color: rgba(255,255,255,0.7); font-weight: 600; margin-bottom: 12px; }
+    .hero-title { font-size: 32px; font-weight: 900; color: #ffffff; line-height: 1.3; margin-bottom: 24px; letter-spacing: -.5px; }
+    .hero-title span { color: var(--primary); }
+    .motivation-strip {
+      display: flex; align-items: center; gap: 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      padding: 16px 20px;
+    }
+    .motivation-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      display: grid; place-items: center; font-size: 22px; flex-shrink: 0;
+      box-shadow: 0 4px 16px var(--primary-glow);
+    }
+    .motivation-text .message { font-size: 15px; font-weight: 700; color: #ffffff; line-height: 1.55; }
+    .motivation-text .sub { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+    .tg-card {
+      background: linear-gradient(150deg, #1e3d2a 0%, #0f2218 100%);
+      border-radius: 24px; padding: 36px 28px; text-align: center;
+      position: relative; overflow: hidden;
+      box-shadow: 0 16px 48px rgba(10,30,20,0.3), 0 0 0 1px rgba(51,204,153,0.12);
+      margin-top: 8px;
+      animation: fadeUp .5s ease both;
+    }
+    .tg-card::before {
+      content: '';
+      position: absolute;
+      width: 300px; height: 300px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(51,204,153,0.15) 0%, transparent 70%);
+      top: -100px; right: -60px; pointer-events: none;
+    }
+    .tg-logo-wrap {
+      width: 64px; height: 64px; border-radius: 18px;
+      background: rgba(51,204,153,0.15);
+      border: 1px solid rgba(51,204,153,0.25);
+      display: grid; place-items: center;
+      margin: 0 auto 18px;
+    }
+    .tg-logo { width: 32px; height: 32px; }
+    .tg-title { font-size: 22px; font-weight: 900; color: #fff; margin-bottom: 8px; }
+    .tg-sub { font-size: 15px; color: rgba(255,255,255,0.6); margin-bottom: 26px; line-height: 1.6; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 15px 30px; border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff; font-weight: 800; font-size: 16px;
+      text-decoration: none; border: none; cursor: pointer;
+      box-shadow: 0 8px 24px var(--primary-glow);
+      transition: transform .2s ease, box-shadow .2s ease;
+      font-family: 'Tajawal', sans-serif;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(51,204,153,0.4); }
+    .btn svg { width: 18px; height: 18px; }
+    .footer { text-align: center; font-size: 13px; color: var(--text-muted); margin-top: 36px; opacity: 0.75; }
+    @keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 600px) {
+      .hero { padding: 30px 22px 28px; }
+      .hero-title { font-size: 26px; }
+      .motivation-text .message { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="hero">
+      <div class="hero-badge"><i class="fa fa-taxi"></i> وقت الانطلاق يا كابتن 🟢</div>
+      <div class="hero-greeting">📩 الضوء الأخضر أمامك — انطلق واكسب من أول الصبح.</div>
+      <h1 class="hero-title">الطريق واضح <span>والطلبات متاحة — انطلق الآن بلا تردد 🟢</span></h1>
+      <div class="motivation-strip">
+        <div class="motivation-icon">🚀</div>
+        <div class="motivation-text">
+          <div class="sub">لا عوائق ولا تأخير — ابدأ رحلتك الصباحية الآن!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tg-card">
+      <div class="tg-logo-wrap">
+        <svg class="tg-logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9.036 15.08l-.375 5.283c.537 0 .77-.231 1.048-.508l2.517-2.42 5.217 3.82c.957.528 1.63.25 1.89-.884L20.76 4.351h.001c.304-1.418-.512-1.972-1.448-1.626L1.12 9.247C-.25 9.778-.229 10.55.886 10.9l5.31 1.658L19.42 5.54c.618-.406 1.18-.182.717.224L9.036 15.08z" fill="#33cc99"/>
+        </svg>
+      </div>
+      <h3 class="tg-title">انضم لقناة «كابتن ناقل» على تليغرام</h3>
+      <p class="tg-sub">كل التحديثات، التنبيهات، والمكافآت اليومية<br>في مكان واحد — لا تفوّت أي فرصة!</p>
+      <a class="btn" href="https://t.me/naqeliraq" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9.036 15.08l-.375 5.283c.537 0 .77-.231 1.048-.508l2.517-2.42 5.217 3.82c.957.528 1.63.25 1.89-.884L20.76 4.351h.001c.304-1.418-.512-1.972-1.448-1.626L1.12 9.247C-.25 9.778-.229 10.55.886 10.9l5.31 1.658L19.42 5.54c.618-.406 1.18-.182.717.224L9.036 15.08z" fill="#fff"/>
+        </svg>
+        انضم الآن إلى القناة
+      </a>
+    </div>
+
+    <div class="footer">ناقل — بالشراكة مع وزارة النقل العراقية ©️ 2026</div>
+  </div>
+</body>
+</html>
